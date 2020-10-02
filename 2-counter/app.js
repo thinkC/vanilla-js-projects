@@ -1,10 +1,9 @@
 const span = document.querySelector('span');
-console.log(span);
-//const btnOne = document.getElementById('btnOne');
 const btnOne = document.querySelector('button.increase')
-console.log(btnOne)
 const btnTwo = document.querySelector('button.reset');
 const btnThree = document.querySelector('button.decrease');
+
+//glocal count
 let count = 0;
 
 btnOne.addEventListener('click', () => {
@@ -38,6 +37,7 @@ const resetCount = () => {
     span.textContent = count
 }
 
+//get colors
 function getColor(count, element) {
     if (count > 0) {
         return element.style.color = 'green';
