@@ -37,3 +37,67 @@ const reviews = [
       "Edison bulb put a bird on it humblebrag, marfa pok pok heirloom fashion axe cray stumptown venmo actually seitan. VHS farm-to-table schlitz, edison bulb pop-up 3 wolf moon tote bag street art shabby chic. ",
   },
 ];
+
+console.log(reviews);
+
+const btn1 = document.querySelector('button.next-btn');
+const btn2 = document.querySelector('button.prev-btn');
+const img = document.getElementById('person-img');
+const author = document.getElementById('author');
+const job = document.getElementById('job');
+const info = document.getElementById('info');
+const randomBtn = document.querySelector('.random-btn');
+//console.log(img.src)
+
+let count = 0;
+
+window.addEventListener('DOMContentLoaded', (Event) => {
+  console.log('content loaded')
+  setProfile(img, author, job, info, reviews, count)
+})
+
+btn1.addEventListener('click', () => {
+  getProfile();
+});
+
+btn2.addEventListener('click', () => {
+  getProfileInReverse();
+});
+
+const getProfile = () => {
+  count++
+  if (count > reviews.length - 1) {
+    count = 0
+  }
+  setProfile(img, author, job, info, reviews, count);
+
+}
+
+//set profile of selected person
+const setProfile = (img, author, job, info, arr, num) => {
+  img.src = arr[num].img;
+  author.textContent = arr[num].name;
+  job.textContent = arr[num].job;
+  info.textContent = arr[num].text;
+
+}
+
+//get previous person
+const getProfileInReverse = () => {
+  count--
+  if (count < 0) {
+    count = reviews.length - 1
+  }
+  setProfile(img, author, job, info, reviews, count)
+}
+
+//get random profile
+randomBtn.addEventListener('click', () => {
+  let randomNum = Math.floor(Math.random() * reviews.length);
+  let randomProfile = reviews[randomNum];
+  console.log(randomProfile)
+  img.src = randomProfile.img;
+  author.textContent = randomProfile.name;
+  job.textContent = randomProfile.job;
+  info.textContent = randomProfile.text;
+})
